@@ -6,5 +6,5 @@ export default function AppNavigation() {
     <View>
       <Text>AppNavigation</Text>
     </View>
-  )
+  ) 
 }

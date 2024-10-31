@@ -9,11 +9,13 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#eeeeee"
     },
     "plugins": [
       "@react-native-firebase/app",
-      "@react-native-firebase/auth"
+      "@react-native-firebase/auth",
+      "expo-font",
+      "expo-secure-store"
     ],
     "ios": {
       "supportsTablet": true
@@ -27,12 +29,16 @@
       "package": "com.giovanninady.chatzy"
     },
     "web": {
+      "bundler": "metro",
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
         "projectId": "bc3fec43-ab2b-4b62-b67c-c21f2e43fd93"
       }
+    },
+    "experiments": {
+      "tsconfigPaths": true
     }
   }
 }
