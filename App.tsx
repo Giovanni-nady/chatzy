@@ -1,4 +1,5 @@
 import './global.css'
+import 'react-native-gesture-handler'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import LottieView from 'lottie-react-native'
@@ -7,6 +8,8 @@ import * as Font from 'expo-font'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Login from '@screens/auth/Login'
 import { ThemeProvider } from './context/ThemeContext'
+import { NavigationContainer } from '@react-navigation/native'
+import AppNavigation from './src/navigation/AppNavigation';
 
 // Prevent the splash screen from auto-hiding until resources are ready
 SplashScreen.preventAutoHideAsync()
@@ -45,25 +48,28 @@ export default function App () {
   }
 
   return (
-    <ThemeProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        {!appIsReady || !animationDone ? (
-          <View style={styles.container}>
-            <LottieView
-              autoPlay
-              loop={false}
-              onAnimationFinish={handleAnimationFinish}
-              style={styles.lottie}
-              source={require('@assets/lottie/splash.json')} // Ensure this path is correct
-            />
-          </View>
-        ) : (
-          <View className='flex-1 justify-center items-center'>
-            <Login />
-          </View>
-        )}
-      </GestureHandlerRootView>
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          {!appIsReady || !animationDone ? (
+            <View style={styles.container}>
+              <LottieView
+                autoPlay
+                loop={false}
+                onAnimationFinish={handleAnimationFinish}
+                style={styles.lottie}
+                source={require('@assets/lottie/splash.json')} // Ensure this path is correct
+              />
+            </View>
+          ) : (
+            <AppNavigation/>
+            // <View className='flex-1 justify-center items-center'>
+            //   {/* <Login /> */}
+            // </View>
+          )}
+        </GestureHandlerRootView>
+      </ThemeProvider>
+    </NavigationContainer>
   )
 }
 
